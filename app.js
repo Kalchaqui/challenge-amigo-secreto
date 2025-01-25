@@ -1,31 +1,30 @@
 
 //Toda la estructura de Añadir amigo
+
 function añadirAmigo(){
     //alert("hiciste click en añadir")
-    let amigo = document.getElementById("amigo").value;
+    let input = document.getElementById("amigo");
+    let amigo = input.value.trim(); // Eliminamos espacios innecesarios
 
-    let opcion = "<li>" + amigo + "</li>";
+    /*Uso un if para indicar que no se agrege campos vacios, 
+    pero también quería mostrar como Alert cuando se agregaba un nombre. */
+    if(amigo === ""){
+        alert("Por favor ingresa un nombre");
+    }else {
+        alert(`Se agrego el nombre ${amigo}`)
+    }
 
-    let lista = document.getElementById("listaAmigos") 
+    let lista = document.getElementById("listaAmigos") ;
 
-    lista.innerHTML += opcion;
+    let opcion=document.createElement("li");
 
-    alert(`Se agrego el nombre ${amigo}`)
+    opcion.textContent = amigo;
+
+    lista.appendChild(opcion);
+
+    input.value = ""; 
 
        }
-/*
-    if (nombre){
-        let lista = document.getElementById("listaAmigos");
-        let item = document.createElement("li");
-        item.textContent = nombre; // Asigna el nombre al elemento
-        lista.appendChild(item); // Agrega el elemento a la lista
-
-        input.value = ''; // Limpia el campo de entrada
-    } else {
-        alert("Escribe un nombre válido");
-    }
-}
- */
 
 
 //Toda la estructura de Sorteo
