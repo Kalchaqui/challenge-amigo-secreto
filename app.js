@@ -7,8 +7,18 @@ function añadirAmigo(){
     let input = document.getElementById("amigo");
     let amigo = input.value.trim(); // Eliminamos espacios innecesarios
 
+    
+    for (let i = 0; i < amigos.length; i++) {
+        if (amigos[i] === amigo) {  // Compara cada nombre con el nuevo
+            alert("Este nombre ya fue agregado.");
+            return; // Sale de la función si encuentra el nombre
+            
+        }
+    }
+
     /*Uso un if para indicar que no se agrege campos vacios, 
     pero también quería mostrar como Alert cuando se agregaba un nombre. */
+    
     if(amigo === ""){
         alert("Por favor ingresa un nombre");
     }else {
