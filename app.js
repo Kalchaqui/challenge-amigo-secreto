@@ -1,5 +1,6 @@
+let amigos = [];
 
-//Toda la estructura de Añadir amigo
+//ESTRUCTURA DE AÑADIR AMIGO Y LISTAS
 
 function añadirAmigo(){
     //alert("hiciste click en añadir")
@@ -14,6 +15,9 @@ function añadirAmigo(){
         alert(`Se agrego el nombre ${amigo}`)
     }
 
+    amigos.push(amigo);
+    console.log(amigos)
+
     let lista = document.getElementById("listaAmigos") ;
 
     let opcion=document.createElement("li");
@@ -27,106 +31,22 @@ function añadirAmigo(){
        }
 
 
-//Toda la estructura de Sorteo
+//ESTRUCTURA DEL SORTEO
+
 function sortearAmigo(){
-    alert ("Agregar amigo");
-    
-}
+    //alert ("Sorteo");
+    let lista = document.getElementById("listaAmigos").children;
+    let resultado = document.getElementById("resultado");
 
-
-
-
-
-
-
-/*QuerySelector permite acceder a cada uno de los elementos, abre parametros para que le insertemos datos ();
-Con QuerySelector el le estoy diciendo a los elementos los traigo, le paso un nombre y se lo atribuyo
-El objeto tiene metodos que definen su comportamiento
-
-let numeroSecreto = 0;
-//Al ser una variable no uso comillas para (elemento, texto)
-let intentos = 0;
-let listaNumerosSorteados = [];
-let numeroMaximo = 10;
-
-console.log(numeroSecreto);
-
-function asignarTextoElemento(elemento, texto){
-    let elementoHTML = document.querySelector(elemento);
-    elementoHTML.innerHTML = texto;
-    return;
-}
-
-//Acá aplicamos funciones, la llamamos de html con Onclick="texto()";
-function verificarIntento(){
-    let numeroDeUsuario = parseInt(document.getElementById("valorUsuario").value);
-    
-    if(numeroDeUsuario === numeroSecreto){
-        asignarTextoElemento("p", `Acertaste el número en ${intentos} ${(intentos === 1) ? "vez" : "veces"}`);
-        document.getElementById("reiniciar").removeAttribute("disabled");
-    } else { 
-        if(numeroDeUsuario > numeroSecreto) {       
-        asignarTextoElemento("p", "El número secreto es menor");
-        
-    } else {
-        asignarTextoElemento("p", "El número secreto es mayor");
-
-    }
-    intentos++;
-    limpiarCaja();
-}
-return;
-}
-
-//Al poner numeral# QuerySelector sabe que lo queres por ID
-function limpiarCaja(){
-    document.querySelector("#valorUsuario").value = "";
-    
-}
-
-function generarNumeroSecreto() {
-    //Si el numero generado esta incluido en la lista hacemos una operacion sino otra
-    let numeroGenerado = Math.floor(Math.random()*numeroMaximo)+1;
-
-    console.log(numeroGenerado);
-    console.log(listaNumerosSorteados);
-//si ya sorteamos todos los números podemos mostrar un mensaje y cerrar juego
-if(listaNumerosSorteados.length == numeroMaximo){
-    asignarTextoElemento("p", "Lo siento, a se sortearon todos los número posibles")
-}else { 
-
-if(listaNumerosSorteados.includes(numeroGenerado)){
-return generarNumeroSecreto();
-} else { 
-
-    (listaNumerosSorteados.push(numeroGenerado))
-        return numeroGenerado;
-
+    if (lista.length === 0) {
+        alert("No hay nombres en la lista para sortear.");
+        return;
     } 
-    //retornar quiere decir que nos retorne un valor
-}
+
+    
+    let indiceGanador = Math.floor(Math.random() * lista.length);
+    let ganador = lista[indiceGanador].textContent;
+
+    resultado.innerHTML = `<li>🎉 El amigo secreto es: <strong>${ganador}</strong> 🎉</li>`;
 
 }
-
-function condicionesIniciales(){
-    asignarTextoElemento("h1", "Juego del número secreto!");
-    asignarTextoElemento("p", `Indica un número del 1 al ${numeroMaximo}`);
-    numeroSecreto = generarNumeroSecreto();
-    intentos = 1;
-}
-function reiniciarJuego() {
-
-    //limpiar la caja
-    limpiarCaja();
-
-    //generar numero aleatorio
-    //indicar mensaje de inicio
-    //inicializar el número de intentos
-    condicionesIniciales();
-
-    //desahibilitar el botón de nuevo juego
-    document.querySelector("#reiniciar").setAttribute("disabled", "true");
-}
-
-condicionesIniciales();
-*/
